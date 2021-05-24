@@ -50,12 +50,14 @@ No modules.
 | [google_compute_target_tcp_proxy.talos_k8s_api](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_target_tcp_proxy) | resource |
 
 | talos_cluster_config.talos_config | resource |
+| [google_compute_zones.available](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_zones) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | n/a | `string` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
 | <a name="input_talos_image"></a> [talos\_image](#input\_talos\_image) | n/a | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `string` | n/a | yes |
 

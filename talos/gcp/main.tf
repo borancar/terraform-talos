@@ -6,12 +6,21 @@ variable "vpc_id" {
   type = string
 }
 
+variable "region" {
+  type = string
+}
+
 variable "talos_image" {
   type = string
 }
 
 locals {
   apiserver_port_name = "tcp6443"
+}
+
+data "google_compute_zones" "available" {
+  region = var.region
+  status = "UP"
 }
 
 resource "google_compute_global_address" "talos_lb" {
@@ -156,12 +165,10 @@ resource "google_compute_instance_template" "talos_bootstrap" {
 }
 
 resource "google_compute_region_instance_group_manager" "talos_bootstrap" {
-  name               = "${var.cluster_name}-bootstrap"
-  base_instance_name = "${var.cluster_name}-bootstrap"
-  target_size        = "1"
-  distribution_policy_zones = [
-    "us-east1-b",
-  ]
+  name                      = "${var.cluster_name}-bootstrap"
+  base_instance_name        = "${var.cluster_name}-bootstrap"
+  target_size               = "1"
+  distribution_policy_zones = slice(data.google_compute_zones.available.names, 1, 2)
 
   version {
     name = "${var.cluster_name}-bootstrap"
@@ -208,14 +215,11 @@ resource "google_compute_instance_template" "talos_controlplane" {
 }
 
 resource "google_compute_region_instance_group_manager" "talos_controlplane" {
-  name               = "${var.cluster_name}-controlplane"
-  base_instance_name = "${var.cluster_name}-controlplane"
-  target_size        = "2"
-  region             = "us-east1"
-  distribution_policy_zones = [
-    "us-east1-c",
-    "us-east1-d",
-  ]
+  name                      = "${var.cluster_name}-controlplane"
+  base_instance_name        = "${var.cluster_name}-controlplane"
+  target_size               = "2"
+  region                    = var.region
+  distribution_policy_zones = slice(data.google_compute_zones.available.names, 2, length(data.google_compute_zones.available.names))
 
   version {
     name = "${var.cluster_name}-controlplane"
@@ -265,7 +269,7 @@ resource "google_compute_region_instance_group_manager" "talos_worker" {
   name               = "${var.cluster_name}-worker"
   base_instance_name = "${var.cluster_name}-worker"
   target_size        = "3"
-  region             = "us-east1"
+  region             = var.region
 
   version {
     name = "${var.cluster_name}-worker"
