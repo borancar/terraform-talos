@@ -258,3 +258,7 @@ output "nlb_dns_name" {
 output "talos_config" {
   value = talos_cluster_config.talos_config.talos_config
 }
+
+output "bootstrap_user_data" {
+  value = talos_cluster_config.talos_config.bootstrap_user_data
+}
