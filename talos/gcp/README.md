@@ -66,6 +66,8 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_bootstrap_user_data"></a> [bootstrap\_user\_data](#output\_bootstrap\_user\_data) | n/a |
+| <a name="output_controlplane_user_data"></a> [controlplane\_user\_data](#output\_controlplane\_user\_data) | n/a |
+| <a name="output_join_user_data"></a> [join\_user\_data](#output\_join\_user\_data) | n/a |
 | <a name="output_lb_ip_address"></a> [lb\_ip\_address](#output\_lb\_ip\_address) | n/a |
 | <a name="output_talos_config"></a> [talos\_config](#output\_talos\_config) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

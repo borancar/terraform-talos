@@ -66,6 +66,8 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_bootstrap_user_data"></a> [bootstrap\_user\_data](#output\_bootstrap\_user\_data) | n/a |
+| <a name="output_controlplane_user_data"></a> [controlplane\_user\_data](#output\_controlplane\_user\_data) | n/a |
+| <a name="output_join_user_data"></a> [join\_user\_data](#output\_join\_user\_data) | n/a |
 | <a name="output_nlb_arn"></a> [nlb\_arn](#output\_nlb\_arn) | n/a |
 | <a name="output_nlb_dns_name"></a> [nlb\_dns\_name](#output\_nlb\_dns\_name) | n/a |
 | <a name="output_talos_ami"></a> [talos\_ami](#output\_talos\_ami) | n/a |

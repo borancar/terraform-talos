@@ -203,7 +203,13 @@ resource "aws_autoscaling_group" "talos_control" {
 resource "aws_launch_template" "talos_worker" {
   name          = "${var.cluster_name}-worker"
   image_id      = data.aws_ami.talos_ami.id
-  instance_type = "t3.small"
+  instance_type = "c5ad.2xlarge"
+
+  block_device_mappings {
+    device_name = "/dev/sdb"
+
+    virtual_name = "ephemeral0"
+  }
 
   network_interfaces {
     subnet_id                   = var.subnet_ids[0]
@@ -261,4 +267,12 @@ output "talos_config" {
 
 output "bootstrap_user_data" {
   value = talos_cluster_config.talos_config.bootstrap_user_data
+}
+
+output "controlplane_user_data" {
+  value = talos_cluster_config.talos_config.controlplane_user_data
+}
+
+output "join_user_data" {
+  value = talos_cluster_config.talos_config.join_user_data
 }
