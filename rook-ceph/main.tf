@@ -14,7 +14,7 @@ locals {
     kind       = "Secret"
     metadata = {
       name      = "rook-vault-token"
-      namespace = "rook-ceph # namespace:cluster"
+      namespace = "rook-ceph" # namespace:cluster
     }
     data = {
       token = "ROOK_TOKEN_CHANGE_ME"
